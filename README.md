@@ -10,7 +10,8 @@
 
 ## GETTING STARTED
 
-- CHANGE **DATABASE SETTINGS** IN `settings.py` TO MATCH YOUR DB SPECIFICS
+- CHANGE **`DATABASE_URL`** IN `.env` TO MATCH YOUR DB SPECIFICS IN THE FOLLOWING **FORMAT**:
+  > - mysql://<user>:<password>@<host>:<port>/<dbname> - Example `mysql://root:@localhost:3306/inventory`
 
 ### Recommended
 
@@ -24,6 +25,7 @@
 - The following command will run all database migrations needed
 
 > `pyhton manage.py migrate`
+> Then test if it works `pyhton manage.py runserver`
 
 ## USAGE
 
@@ -37,6 +39,11 @@
  - Retrieve item at `GET /items/<item id>/`
  - Update item at `PUT /items/<item id>/` - with fields you want to update
  - Delete item at `DELETE /items/<item id>/`
+
+
+### Django rest framework will help you with a browsable api 
+
+ > To disable the `browsable api` go to `inventory/setting.py` and `comment` lines `154 - 156` 
 
 
 ## CONTACT
