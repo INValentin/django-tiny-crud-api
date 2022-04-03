@@ -41,4 +41,4 @@
 
 ## CONTACT
 
-> <ISHIMWE Valentin>ishimwedeveloper@gmail.com 
+> "ISHIMWE Valentin <ishimwedeveloper@gmail.com>"
