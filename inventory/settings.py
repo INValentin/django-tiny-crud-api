@@ -1,18 +1,34 @@
 from pathlib import Path
+import os
+import environ
+
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+# Take environment variables from .env file
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)@^k+x^*_5pz==kefbj_geg7n20ov2c*7i1q608-b^^l(py9@('
+SECRET_KEY = env('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+# False if not in os.environ because of casting above
+DEBUG = env('DEBUG')
+
+ALLOWED_HOSTS = [ '*' ]
 
 # Application definition
 
@@ -64,18 +80,28 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# Parse database connection url strings
+# like psql://user:pass@127.0.0.1:8458/db
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'inventory',
-        'HOST': 'localhost',
-        'PASSWORD': '',
-        'USER': 'root',
-        'OPTIONS': {
-            'sql_mode': 'STRICT_ALL_TABLES'
-        }
-    }
+    # read os.environ['DATABASE_URL'] and raises
+    # ImproperlyConfigured exception if not found
+    #
+    # The db() method is an alias for db_url().
+    'default': env.db()
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'inventory',
+#         'HOST': 'localhost',
+#         'PASSWORD': '',
+#         'USER': 'root',
+#         'OPTIONS': {
+#             'sql_mode': 'STRICT_ALL_TABLES'
+#         }
+#     }
+# }
 
 
 # Password validation
