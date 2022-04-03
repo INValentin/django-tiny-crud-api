@@ -40,6 +40,8 @@
  - Update item at `PUT /items/<item id>/` - with fields you want to update
  - Delete item at `DELETE /items/<item id>/`
 
+ -> ***PLEASE REMEMBER TRAILING SLASHES TO AVOID ERRORS***
+
 
 ### Django rest framework will help you with a browsable api 
 
