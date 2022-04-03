@@ -147,13 +147,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DRF
 
-RENDERERS = (
+RENDERERS = [
     'rest_framework.renderers.JSONRenderer',
-),
+],
 
 if DEBUG:
-    RENDERERS += (
-        'rest_framework.renderers.BrowsableAPIRenderer',)
+    RENDERERS += [
+        'rest_framework.renderers.BrowsableAPIRenderer', ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
