@@ -45,6 +45,7 @@
 
  > To disable the `browsable api` go to `inventory/setting.py` and `comment` lines `154 - 156` 
 
+### Note THAT API is also acceble at `https://items-crud-api.herokuapp.com/`
 
 ## CONTACT
 
