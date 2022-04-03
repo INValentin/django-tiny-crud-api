@@ -149,7 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RENDERERS = [
     'rest_framework.renderers.JSONRenderer',
-],
+]
 
 if DEBUG:
     RENDERERS += [
