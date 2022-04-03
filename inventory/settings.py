@@ -28,7 +28,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [ '*' ]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -147,15 +147,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DRF
 
+RENDERERS = (
+    'rest_framework.renderers.JSONRenderer',
+),
+
+if DEBUG:
+    RENDERERS += (
+        'rest_framework.renderers.BrowsableAPIRenderer',)
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ),
+    'DEFAULT_RENDERER_CLASSES': RENDERERS,
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
